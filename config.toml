@@ -1,0 +1,44 @@
+baseurl = "https://sausheong.github.io"
+languageCode = "en"
+title = "sausheong's space"
+theme = "kiss"
+copyright = "&copy; <a href=\"https://github.com/sausheong\">Chang Sau Sheong</a> 2018"
+disqusShortname = "shortname"
+googleAnalytics = ""
+# Number of posts per page
+Paginate = 5
+enableRobotsTXT = true
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+
+[params.assets]
+customCSS = ["css/custom.css"]
+
+[params.info]
+adsense = "" # Adsense ID (ID only, without ca-pub-)
+enableSocial = true # Adds OpenGraph and Twitter cards
+homeTitle = "sausheong's space" # Title for home page
+poweredby = false # Adds powered by hugo and kiss below Copyright
+
+[params.opengraph.facebook]
+admins = [] # array of Facebook IDs
+appID = ""
+pageID = ""
+
+[params.opengraph.twitter]
+page = "" # Twitter Page username. If not set, params.social.twitter will be used.
+
+[params.social]
+
+twitter = "sausheong"
+github = "sausheong"
+email = "sausheong@gmail.com"
+linkedin = "sausheong"
+facebook = "sausheong"
+instagram = "sausheong"
+
+[taxonomies]
+tag ="tags"
+
+[blackfriday]
+hrefTargetBlank = true
