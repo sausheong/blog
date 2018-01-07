@@ -4,13 +4,13 @@ date: 2018-01-06T23:33:07+08:00
 draft: false
 ---
 
-It may not seem obvious at first glance, but computer science algorithms are often inspired by nature and biological processes. Some of these algorithms include neural networks, particle swarm optimization, artificial bee colony, ant colony optimization, evolutionary algorithms and many more. In fact, you can consider biological processes to be simply algorithms that nature have come up with to solve problems. From that point of view it's easy to see why many of these algorithms are optimization heuristics and metaheuristics. After all nature optimizes for survival. 
+It may not seem obvious at first glance, but computer science algorithms are often inspired by nature and biological processes. Some of these algorithms include neural networks, particle swarm optimization, artificial bee colony, ant colony optimization, evolutionary algorithms and many more. In fact, you can consider biological processes to be simply algorithms that nature have come up with to solve problems. From that point of view it's easy to see why many of these algorithms are optimization heuristics and metaheuristics. After all, nature optimizes for survival. 
 
 [Heuristics](https://stackoverflow.com/questions/2334225/what-is-the-difference-between-a-heuristic-and-an-algorithm), in case the term is not familiar to you, are algorithms that try to solve the problem faster by making some assumptions. As a result, heuristics are often not optimal but are more useful in cases when getting the best results take way too long. [Metaheuristics](https://www.researchgate.net/post/What_are_the_differences_between_heuristics_and_metaheuristics) take this to the next level -- they are a heuristic that generates or finds heuristics.  
 
 ## Genetic algorithms
 
-Genetic algorithms are metaheuristics that are based on the process of [natural selection](https://en.wikipedia.org/wiki/Natural_selection). 
+Genetic algorithms are metaheuristics that are based on the process of [natural selection](https://en.wikipedia.org/wiki/Natural_selection). Genetic algorithms are a type of evolutionary algorithm. 
 
 Natural selection, as a refresher, is a key mechanism in evolution. It is a natural process that causes populations (of organisms) to adapt to their environment over time. These populations have variations in traits. Individual organisms with more suitable traits have higher chances of survival in the environment. The next generations reproduced from these surviving organisms will inherit their traits, resulting eventualy in a population with these more suitable traits. 
 
@@ -517,6 +517,10 @@ func printImage(img image.Image) {
 ```
 
 What this means unfortunately is that if you run this code in anything else other iTerm2, you won't be able to see the evolution of the images. However you can always tweak the output such that every few generations you capture the output.
+
+## Code
+
+All code and images in this post can be found here: https://github.com/sausheong/ga
 
 ## References
 

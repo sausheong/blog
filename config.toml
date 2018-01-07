@@ -3,7 +3,7 @@ languageCode = "en"
 title = "sausheong's space"
 theme = "kiss"
 copyright = "&copy; <a href=\"https://github.com/sausheong\">Chang Sau Sheong</a> 2018"
-disqusShortname = "https-sausheong-github-io"
+disqusShortname = "space"
 googleAnalytics = ""
 # Number of posts per page
 Paginate = 5
