@@ -1,6 +1,10 @@
-# Flocking with Go
+---
+title: "Flocking with Go"
+date: 2018-01-15T01:04:07+08:00
+draft: false
+---
 
-I have been writing flocking simulations for a long time. I played around with it with Java but the earliest one I still have record of was with JRuby and Swing called [Utopia](https://youtu.be/x44s8TTWm5E). I subsequently wrote one using [Shoes](http://shoesrb.com) and that was the one in my [_Exploring Everyday Things witn R and Ruby_](http://shop.oreilly.com/product/0636920022626.do) book. Some time after (I was unhappy with Shoes in general), I re-wrote it again using [Gosu](https://github.com/gosu/gosu), a 2D game development library for Ruby and C++. This version can be found [here](https://github.com/sausheong/utopia).
+I have been writing flocking simulations for a long time. I played around with it with Java but the earliest one I still have record of was with JRuby and Swing called [Utopia](https://youtu.be/x44s8TTWm5E). I wrote one using [Shoes](http://shoesrb.com) and that was the one in my [_Exploring Everyday Things witn R and Ruby_](http://shop.oreilly.com/product/0636920022626.do) book. Some time after (I was unhappy with Shoes in general), I re-wrote it again using [Gosu](https://github.com/gosu/gosu), a 2D game development library for Ruby and C++. This version can be found [here](https://github.com/sausheong/utopia).
 
 [Flocking](https://en.wikipedia.org/wiki/Flocking_(behavior)) simulations are basically a software program that simulates the flocking behavior of birds. This flocking behavior is very somewhat similar to the swarming behavior of insects or the shoaling behavior of fish. It's considered an emergent behavior -- a behavior that arises from individuals following simple rules and doesn't involve any central coordination. Such behavior, especially seen in murmurations of starlings or swarms of barracuda can be a breath-taking phenomenon.
 
