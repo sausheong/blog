@@ -45,7 +45,7 @@ Let's make `c` to be 3. The output is then `30` and is `e` is now `-4`. Oops, we
 
 Once we know what `c` is, we can use the predictor to predict the output for other inputs. Let's say the input `i` is now 20, then we can predict  `o` to be 52.
 
-As you can see, this method tries to find answers iteratively and improving itself as it goes along, until we get the best fit. This in essence is what [machine learning[([A Beginner’s Guide to AI/ML 🤖👶 – Machine Learning for Humans – Medium](https://medium.com/machine-learning-for-humans/why-machine-learning-matters-6164faf1df12)) is. The computer program  tries to find answers iteratively and ‘learns’ through its mistakes until it achieves a model that can produce the best answer. Once it has the correct model, we can use the model to correctly guess the answers. This is very similar to what we humans do (by learning from past mistakes and correcting ourselves) but how exactly do we do it?
+As you can see, this method tries to find answers iteratively and improving itself as it goes along, until we get the best fit. This in essence is what [machine learning]([A Beginner’s Guide to AI/ML 🤖👶 – Machine Learning for Humans – Medium](https://medium.com/machine-learning-for-humans/why-machine-learning-matters-6164faf1df12)) is. The computer program  tries to find answers iteratively and ‘learns’ through its mistakes until it achieves a model that can produce the best answer. Once it has the correct model, we can use the model to correctly guess the answers. This is very similar to what we humans do (by learning from past mistakes and correcting ourselves) but how exactly do we do it?
 
 # How humans do it
 Let’s step out a bit. We talked a bit about how a machine can possible learn using mathematical functions. How humans do the same thing (as research over the years have shown) is using something called a [_neuron_]([Understanding Neurons’ Role in the Nervous System](https://www.verywellmind.com/what-is-a-neuron-2794890)).
@@ -118,11 +118,11 @@ That’s very well and good but how do we minimise a value of a function by chan
 
 Let’s look at this from a different perspective. We know the final output error `Ek`  is:
 
-{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/errork1.png" title="Charting final output error to weights" width="200px">}}
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/errork1.png" width="200px">}}
 
 However just subtracting `ok` from `tk` isn’t a great idea because it will often result in negative numbers. If we are trying to find the final output error of the network, we’re actually adding up all the errors, so if some of them are negative numbers it will result in the wrong final output error. A common solution is to use the _squared error_, which the name suggests is:
 
-{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/errork.png" title="Gradient descent" width="250px">}}
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/errork.png" width="250px">}}
 
 At the same time we know:
 
@@ -131,11 +131,11 @@ At the same time we know:
 
 So we know (roughly speaking) if we map `Ek` with `wjk` we will get a range of values (blue line) plotted on a chart (actually this is a multi- dimensional chart but in order to keep our collective sanity, I’m going to use a 2 dimensional chart):  
 
-{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/g.png" width="400px">}}
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/g.png" title="Charting final output error to weights" width="400px">}}
 
 As you can see, to reach the minimal value of `Ek` we follow the gradient downwards or the negative gradient. In other words, we try to find the negative gradient, change the weight accordingly, then find negative gradient again, until we reach the minimal point of `Ek`. This algorithm is called [_gradient descent_]([An Introduction to Gradient Descent and Linear Regression](https://spin.atomicobject.com/2014/06/24/gradient-descent-linear-regression/)).
 
-{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/gd.png" width="400px">}}
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/gd.png" title="Gradient descent" width="400px">}}
 
 You might remember from secondary school calculus, in order to find the gradient of a point in a function we use [differentiation]([Introduction to Derivatives](https://www.mathsisfun.com/calculus/derivatives-introduction.html)) to get the derivative of the function. This allows us to find out how much we need to tweak `wjk`. To find the minimum value of `Ek`, we subtract this amount from `wjk` and we do this repeatedly.
 
@@ -247,9 +247,9 @@ Not all neural networks need bias neurons. In the simple neural network we’re 
 # Finally some code!
 So we’re finally here! After all the concepts and maths, we’re now going to start some implementation! 
 
-All the code here can be found in this Github repository:
+The code snippets in this post is not complete so don't simply cut and paste from here to run it. All the code here can be found in this Github repository:
 
-http://sausheong.github.com/sausheong/gonn
+https://github.com/sausheong/gonn
 
 At this point in time Go doesn’t have a lot of support in terms of libraries for machine learning, unlike Python. However there is a very useful library called [Gonum]([Gonum](https://www.gonum.org/)) that provides what we need most — matrix manipulation.
 
@@ -342,7 +342,7 @@ func addScalar(i float64, m mat.Matrix) mat.Matrix {
 ## The neural network
 Here we go!
 
-We’ll be creating a very simple 3 layer feedforward neural network.  We start off with defining the network:
+We’ll be creating a very simple 3 layer feedforward neural network (also known as multi-layer perceptron).  We start off with defining the network:
 
 ```go
 type Network struct {
@@ -368,7 +368,6 @@ func CreateNetwork(input, hidden, output int, rate float64) (net Network) {
 		learningRate: rate,
 	}
 	net.hiddenWeights = mat.NewDense(net.hiddens, net.inputs, randomArray(net.inputs*net.hiddens, float64(net.inputs)))
-	
 	net.outputWeights = mat.NewDense(net.outputs, net.hiddens, randomArray(net.hiddens*net.outputs, float64(net.hiddens)))
 	return
 }
@@ -419,7 +418,7 @@ func (net Network) Predict(inputData []float64) mat.Matrix {
 
 We start off with the inputs first, by creating a matrix called `inputs` to represent the input values. Next we find the inputs to hidden layer by applying the dot product between the hidden weights and the inputs, creating a matrix called `hiddenInputs`. In other words, given a 2 neuron input layer and a 3 neuron hidden layer, this is what we get:
 
-{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/matrix2.png" title="Using matrices with bias" width="700px">}}
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/matrix1.png" width="600px">}}
 
 Next, we apply our activation function, `sigmoid`  on the hidden inputs to produce `hiddenOutputs`.
 
@@ -468,7 +467,7 @@ The first thing we need to do after getting the final outputs is to determine th
 
 The hidden errors from the hidden layer is a bit trickier. Remember this?
 
-{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/matrix1.png" width="600px">}}
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/matrix2.png" width="700px">}}
 
 We use back propagation to calculate the hidden errors by applying the dot product on the transpose of the output weights and the output errors. This will give us `hiddenErrors`.
 
@@ -570,10 +569,10 @@ func mnistTrain(net *Network) {
 
 			targets := make([]float64, 10)
 			for i := range targets {
-				targets[i] = 0.1
+				targets[i] = 0.01
 			}
 			x, _ := strconv.Atoi(record[0])
-			targets[x] = 0.9
+			targets[x] = 0.99
 
 			net.Train(inputs, targets)
 		}
@@ -588,7 +587,7 @@ We open up the CSV file and read each record, then process each record. For ever
 
 For the `inputs` array we take each pixel from the record, and convert it to a value between 0.0 and 1.0 with 0.0 meaning a pixel with no value and 1.0 meaning a full pixel. 
 
-For the `targets` array, each element of the array represents the probability of the index being the target digit. For example, if the target digit is 3, then the 4th element `targets[3]` would have a probability of 0.9 while the rest would have a probability of 0.1. 
+For the `targets` array, each element of the array represents the probability of the index being the target digit. For example, if the target digit is 3, then the 4th element `targets[3]` would have a probability of 0.99 while the rest would have a probability of 0.01. 
 
 Once we have the inputs and targets, we call the `Train` function of the network and pass it the inputs and targets.
 
@@ -784,7 +783,7 @@ And that’s it, we have written a simple 3-layer feedforward neural network fro
 # References
 Here are some of the references for I took when writing this post and the code.
 
-* Tariq Rashid’s [Make Your Own Neural Network]([Make Your Own Neural Network 1.0, Tariq Rashid, eBook - Amazon.com](https://www.amazon.com/Make-Your-Own-Neural-Network-ebook/dp/B01EER4Z4G)) is a great book to learn the basics of neural networks with its easy style of explanation
-* Michael Nielsen’s [Neural Networks and Deep Learning] ([Neural networks and deep learning](http://neuralnetworksanddeeplearning.com/)) free online book is another amazing resource to learn the intricacies of building neural networks
-* Daniel Whitenack wrote a book on _Machine Learning With Go_ and his post on [Building a Neural Net from Scratch in Go]([Building a Neural Net from Scratch in Go](http://www.datadan.io/building-a-neural-net-from-scratch-in-go/)) is quite educational
-* Ujjwal Karn’s data science blog has a nice [introductory post on neural networks]([A Quick Introduction to Neural Networks – the data science blog](https://ujjwalkarn.me/2016/08/09/quick-intro-neural-networks/))
+* Tariq Rashid’s [Make Your Own Neural Network](https://www.amazon.com/Make-Your-Own-Neural-Network-ebook/dp/B01EER4Z4G) is a great book to learn the basics of neural networks with its easy style of explanation
+* Michael Nielsen’s [Neural Networks and Deep Learning] (http://neuralnetworksanddeeplearning.com/) free online book is another amazing resource to learn the intricacies of building neural networks
+* Daniel Whitenack wrote a book on _Machine Learning With Go_ and his post on [Building a Neural Net from Scratch in Go](http://www.datadan.io/building-a-neural-net-from-scratch-in-go/) is quite educational
+* Ujjwal Karn’s data science blog has a nice [introductory post on neural networks](https://ujjwalkarn.me/2016/08/09/quick-intro-neural-networks/)
