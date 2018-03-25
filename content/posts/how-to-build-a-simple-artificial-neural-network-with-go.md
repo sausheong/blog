@@ -8,22 +8,22 @@ I have written a lot of computer programs in my career, most of the time to solv
 
 This is because computer programs are really good at executing algorithms -- instructions that follow defined steps and patterns that are precise and often repetitious. And in most cases they work well for us for tasks like number crunching or repetitious boring work. 
 
-{{< figure src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Eniac.jpg" width="600px">}}
+{{< figure src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Eniac.jpg" title="The ENIAC was one of the first general-purpose, programmable computers ever made" width="600px">}}
 
 
 What computer programs are not so good at doing though, are tasks that are not so well defined, and doesn’t follow precise patterns. 
 
-{{< figure src="https://imgs.xkcd.com/comics/tasks.png" width="250px">}}
+{{< figure src="https://imgs.xkcd.com/comics/tasks.png" title="In the 60s, Marvin Minsky assigned a couple of undergrads to spend the summer programming a computer to use a camera to identify objects in a scene. He figured they'd have the problem solved by the end of the summer. Half a century later, we're still working on it." width="250px">}}
 
 So how can we use computers to do such tasks? Just think about how _you_ do this task. You probably learned about birds when you're young, and you've been told certain animals are birds and certain animals are not, mostly through seeing them either in real life or through picture books. When you get it wrong, you'll be told and you remember that. Over time you have a _mental model_ of what's a bird and what's not. Every time you see something parts of a bird (clawed feet, feathered wings, sharp beak) you don't even need to see the whole animal anymore, you'll automatically identify it correctly by comparing it with your mental model.
 
 So how do we do this with computer programs? Basically we do the same thing. We try to create a _model_ that we can use to compare inputs with, through a trial and error process. And since computer programs are all mathematics, you can guess that it's going to be a _mathematical model_ that we're going to be talking about.
 
 # A guessing game 
+
 Let's take a simple example create a black box that accepts an input and tries to predict the output. 
 
-{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/predictor1.png" title="Predictor" width="400px">}}
-
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/predictor1.png" title="A simple predictor" width="400px">}}
 
 We feed it with an input and get the output from this predictor. Since we know what the actual output should be, we can tell how different the predicted output is from the actual output. This difference between the actual and the predicted output becomes the _error_. 
 
@@ -35,7 +35,7 @@ In other words, this is very much like a numbers guessing game.
 
 Let’s see this in a more practical way. Let’s say we have a predictor with the simple mathematical formula `o = i x c` where `o` is the output, `i` is the input and `c` is configurable parameter. 
 
-{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/predictor2.png" title="Predictor2" width="400px">}}
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/predictor2.png" title="A simple predictor with a configurable parameter" width="400px">}}
 
 We are also given a confirmed valid output with a given input, that is, we know if `i` is 10, `o` is 26. How do we find `c` using the predictor?
 
@@ -50,15 +50,15 @@ As you can see, this method tries to find answers iteratively and improving itse
 # How humans do it
 Let’s step out a bit. We talked a bit about how a machine can possible learn using mathematical functions. How humans do the same thing (as research over the years have shown) is using something called a [_neuron_]([Understanding Neurons’ Role in the Nervous System](https://www.verywellmind.com/what-is-a-neuron-2794890)).
 
-{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/purkinjecell.jpg" title="Drawing of pigeon neuron cells" width="400px">}}
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/purkinjecell.jpg" title="Drawing of neurons in the pigeon cerebellum, by Spanish neuroscientist Santiago Ramón y Cajal in 1899" width="400px">}}
 
 A neuron, or a nerve cell, is a cell that receives information, processes them and transmits through electrical and chemical signals. Our brain and spinal cord (part of what is called our central nervous system) consists of neurons.
 
-{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/bneuron.png" title="Neuron" width="600px">}}
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/bneuron.png" title="A neuron with dendrites, a cell body and an axon" width="600px">}}
 
 A neuron consists of a cell body, dendrites and an axon and can connected to each other to form neural networks. In a neural network, a neuron's axon is connected to the next neuron's dendrites and synaptic signals are transmitted from a neuron through its axon, and received by the next neuron through its dendrites. The connections between the axon and the dendrites is the synapse.
 
-{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/synapses.png" title="Synapses" width="600px">}}
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/synapses.png" title="Synapses are the connections between neurons" width="600px">}}
 
 
 The incoming signals through the dendrite are strengthened or weakened based on how often the synaptic connections are being used and these strengthened or weakened signals are pooled together in the cell body. 
@@ -72,7 +72,7 @@ With this information, let’s get back into our predictor and make some changes
 # Artificial neurons
 We start off with building an artificial neuron that emulates the actual biological neuron. This artificial neuron is our upgraded predictor.
 
-{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/aneuron1.png" title="Artificial neuron" width="400px">}}
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/aneuron1.png" title="An artificial neuron mimicking a biological one" width="400px">}}
 
 Instead of a single input we have a bunch of inputs, each of the modified with a weight (in place of a configurable parameter). These modified inputs are summed up and passed through a triggering or [activation function]([Understanding Activation Functions in Neural Networks](https://medium.com/the-theory-of-everything/understanding-activation-functions-in-neural-networks-9491262884e0)) which determines if an output should be sent.
 
@@ -118,11 +118,11 @@ That’s very well and good but how do we minimise a value of a function by chan
 
 Let’s look at this from a different perspective. We know the final output error `Ek`  is:
 
-{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/errork1.png" width="200px">}}
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/errork1.png" title="Charting final output error to weights" width="200px">}}
 
 However just subtracting `ok` from `tk` isn’t a great idea because it will often result in negative numbers. If we are trying to find the final output error of the network, we’re actually adding up all the errors, so if some of them are negative numbers it will result in the wrong final output error. A common solution is to use the _squared error_, which the name suggests is:
 
-{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/errork.png" width="250px">}}
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/errork.png" title="Gradient descent" width="250px">}}
 
 At the same time we know:
 
@@ -214,7 +214,7 @@ If you think about it, the error at the output layer is contributed by the error
 
 As as result, we can use the ratio of the weights to calculate the change to make for each weight.  And because the denominator is constant, we can simplify this further by simply drop the denominators.
 
-{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/error_backpropagate.png" title="Back propagating error" width="500px">}}
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/error_backpropagate.png" title="Back propagating errors" width="500px">}}
 
 Now let’s see how we can back propagate the errors from the output layer using matrices. 
 
