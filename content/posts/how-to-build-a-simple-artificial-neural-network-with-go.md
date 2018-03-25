@@ -13,7 +13,7 @@ This is because computer programs are really good at executing algorithms -- ins
 
 What computer programs are not so good at doing though, are tasks that are not so well defined, and doesn’t follow precise patterns. 
 
-![](https://imgs.xkcd.com/comics/tasks.png)
+{{< figure src="https://imgs.xkcd.com/comics/tasks.png" width="250px">}}
 
 So how can we use computers to do such tasks? Just think about how _you_ do this task. You probably learned about birds when you're young, and you've been told certain animals are birds and certain animals are not, mostly through seeing them either in real life or through picture books. When you get it wrong, you'll be told and you remember that. Over time you have a _mental model_ of what's a bird and what's not. Every time you see something parts of a bird (clawed feet, feathered wings, sharp beak) you don't even need to see the whole animal anymore, you'll automatically identify it correctly by comparing it with your mental model.
 
@@ -80,20 +80,23 @@ So why an activation function (beyond the fact that a biological neuron behaves 
 
 For now, we will assume the use of a common activation function, the [sigmoid function]([Sigmoid function](https://ipfs.io/ipfs/QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco/wiki/Sigmoid_function.html)).
 
-![](https://raw.githubusercontent.com/sausheong/gonn/master/imgs/sigmoid.png)
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/sigmoid.png" title="Sigmoid function" width="600px">}}
 
 The interesting thing to note about this function is that the output is always within the range between 0 and 1 but never reaches either. 
 
 # Artificial neural networks
+
 Just like we had neurons forming neural networks, we can also connect our artificial neurons to form artificial neural networks.
 
-![](https://raw.githubusercontent.com/sausheong/gonn/master/imgs/ann.png)
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/ann.png" title="Artificial neural network with 3 layers" width="600px">}}
+
 
 It seems quite a bit more complicated now! 
 
 However we’re simply stacking the neurons up in different layers. All the inputs come in through the input layer, which sends its output to the hidden layer, which in turn sends its outputs to the final output layer. While the output from each node is the same (there is only 1 output) but the connections to the neurons in the next layer are weighted differently. For example, the inputs to the first node in the hidden layer would be `(w11 x i1) + (w21 x i2)`.   
 
 # Simplifying with matrices
+
 Calculating the final outputs in this network can be a bit tedious if we have to do it one at a time, especially if we have a lot of neurons. Fortunately there’s an easier way. If we represent the inputs as well as the weights as matrices, we can use the matrix operations to make the calculations easier. In fact we don’t need to do individual neuron input summation and output activation anymore, we simply do it layer by layer.
 
 {{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/matrix1.png" title="Using matrices" width="600px">}}
@@ -229,15 +232,15 @@ So an artificial neural network learns through back propagation using gradient d
 ## Bias
 With our current neural network, the activation function is a sigmoid that cuts though `y` at 0.5. Any changes to the weights simply changes the the steepness of the sigmoid. As a result there is a limitation to how the neuron is being triggered. For example, to make the sigmoid return a low value of 0.1 when `x` is 2 is going to be impossible.  
 
-![](https://raw.githubusercontent.com/sausheong/gonn/master/imgs/nobias.png)
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/nobias.png" title="Sigmoid functions without bias" width="600px">}} 
 
 However if we add a [_bias_]([Make Your Own Neural Network: Bias Nodes in Neural Networks](http://makeyourownneuralnetwork.blogspot.sg/2016/06/bias-nodes-in-neural-networks.html)) value to `x` this changes things altogether.
 
-![](https://raw.githubusercontent.com/sausheong/gonn/master/imgs/bias.png)
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/bias.png" title="Sigmoid functions with bias" width="600px">}}
 
 How we do this is by adding something called a _bias neuron_ to the neural network. This bias neuron always outputs 1.0 and is added to a layer but doesn’t have any have any input. 
 
-![](https://raw.githubusercontent.com/sausheong/gonn/master/imgs/ann_bias.png)
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/ann_bias.png" title="Artificial neural network with bias" width="600px">}}
 
 Not all neural networks need bias neurons. In the simple neural network we’re going to write later, we’ll not be using any bias neurons (and it works pretty ok). 
 
@@ -375,7 +378,7 @@ The number of input, hidden and output neurons as well as the learning rate is p
 
 If you remember from above, the weights we are creating is a matrix with the number of columns represented by _from_ layer, and the number of rows represented by the _to_ layer. This is because the number of rows in the weight must the same as the number of neurons in the _to_ layer and the number of columns must be the same number of neurons as the _from_ layer (in order to multiply with the outputs of the _from_ layer). Take a while to look at the diagrams below again — it will make more sense.
 
-![](https://raw.githubusercontent.com/sausheong/gonn/master/imgs/weights.png)
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/weights.png" title="Neural network and matrices" width="600px">}}
 
 Initializing the weights with a random set of numbers is one of the important parameters. For this we’re going to use a function `randomArray` to create this random array of float64. 
 
@@ -416,7 +419,7 @@ func (net Network) Predict(inputData []float64) mat.Matrix {
 
 We start off with the inputs first, by creating a matrix called `inputs` to represent the input values. Next we find the inputs to hidden layer by applying the dot product between the hidden weights and the inputs, creating a matrix called `hiddenInputs`. In other words, given a 2 neuron input layer and a 3 neuron hidden layer, this is what we get:
 
-![](https://raw.githubusercontent.com/sausheong/gonn/master/imgs/matrix.png)
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/matrix2.png" title="Using matrices with bias" width="700px">}}
 
 Next, we apply our activation function, `sigmoid`  on the hidden inputs to produce `hiddenOutputs`.
 
@@ -538,7 +541,8 @@ We’re finally here — using the neural network!
 ## MNIST handwriting recognition
 Let’s start with a ‘hello world’ of machine learning — using the MNIST dataset  to recognise handwritten numeric digits. The MNIST dataset is a set of 60,000 scanned handwritten digit images used for training and 10,000 similar images used for testing. It’s a subset of a larger set from NIST (National Institute of Standards and Technology)  that has been size-normalised and centered. The images are in black and white and are 28 x 28 pixels. The original dataset are stored in a format is that more difficult to work with, so people have come up with [simpler CSV formatted datasets]([MNIST in CSV](https://pjreddie.com/projects/mnist-in-csv/)), which is what we’re using.
 
-![MNIST dataset](https://raw.githubusercontent.com/sausheong/gonn/master/imgs/mnist_dataset.png)
+{{< figure src="https://raw.githubusercontent.com/sausheong/gonn/master/imgs/mnist_dataset.png" title="MNIST dataset" width="700px">}}
+
 
 In the CSV format every line is an image, and each column except the first represents a pixel. The first column is the label, which is the actual digit that the image is supposed to represent. In other words, this is the target output. Since there are 28 x 28 pixels, this means there are 785 columns in every row.
 
