@@ -150,7 +150,7 @@ I'll describe `threshold` later.
 
 ### Counting words
 
-The heart of the classifier is really in counting words, so let's look at that next. We have a function `funcWords` to do that, passing in a document, and returns a map of the number of times each word appears.
+The heart of the classifier is really in counting words, so let's look at that next. We have a function `countWords` to do that, passing in a document, and returns a map of the number of times each word appears.
 
 ```go
 var cleaner = regexp.MustCompile(`[^\w\s]`)
