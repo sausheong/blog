@@ -4,9 +4,6 @@ date: 2019-12-25T22:33:07+08:00
 draft: false
 ---
 
-![My Raspberry Pi 4 dev machine](/pi4dev/pi4_open.jpg)
-*My Raspberry Pi 4 dev machine*
-
 Years ago when I was just starting out in my career, a couple of friends and I came together with a new startup idea. The plan was to take a few days off from work, get a hotel room somewhere (co-working spaces were almost non-existent then) and start hacking out our new exciting prototype. However, we were a bit stuck because of our computers.
 
 I had  just started my job a couple of years then, and only had a self-assembled full tower computer at home but nothing portable. My better-funded friend had a laptop and said he could borrow another from someone else for me, while the other friend said he has his own portable computer.
@@ -14,6 +11,9 @@ I had  just started my job a couple of years then, and only had a self-assembled
 We went about doing our own planning, and when the day came, we were pretty dumbfounded by my friend’s ‘portable computer’. I didn’t manage to take a picture — no one have a casual habit of carrying cameras then and anyone wanting to take a picture with his phone would be considered a raving lunatic (how do you stick a roll of film into a phone)?
 
 His ‘portable computer’ was his mid-tower machine in a red supermarket shopping plastic bag, stuffed along with his mouse, full sized keyboard and power cables. His plan, as he explained after we picked our jaws off the floor, was to connect it to the TV in the hotel room.
+
+![My Raspberry Pi 4 dev machine](/pi4dev/pi4_open.jpg)
+*My Raspberry Pi 4 dev machine*
 
 Portable computers have come a long way since then.
 
@@ -185,7 +185,7 @@ You just need to restart the Pi4, attach it to your iPad Pro and you should see 
 ![If you see the Ethernet setting it means the Pi4 is connected](/pi4dev/pi4_ipad.png)
 *If you see the Ethernet setting it means the Pi4 is connected*
 
-Once you click on it on the _Pi4 USB Desktop_ row you should see something like this. The IP address and subnet mask is assigned by dnsmasq and represents the IP address of the iPad Pro.
+If you select the _Pi4 USB Desktop_ setting you should see something like this. The IP address and subnet mask is assigned by dnsmasq and represents the IP address of the iPad Pro.
 
 ![Network configuration for the Pi4 interface](/pi4dev/pi4_ipad2.png)
 *Network configuration for the Pi4 interface*
@@ -193,17 +193,20 @@ Once you click on it on the _Pi4 USB Desktop_ row you should see something like 
 If you see all these your Pi4 is set up and connected!
 
 ## Now that you have a development machine
-So you have the Pi4 set up as a development machine and you’ve connected your iPad Pro to it. What’s next is to get the right tools on your iPad Pro to start developing. There are plenty of apps on iPadOS to choose from, but here’s the ones I’m using.
+So you have the Pi4 set up as a development machine and you’ve connected your iPad Pro to it. What’s next is to get the right tools on your iPad Pro to start developing. There are plenty of apps on iPadOS to choose from, but here are the ones I use.
 
 ### SSH
-There are plenty of SSH clients available on the iPad but the two apps I’ve tried and eventually still retain in my iPad are [Termius](https://www.termius.com) and [Prompt](https://panic.com/prompt/). Both are professionally written and beautiful apps that has plenty of good features. 
+There are plenty of SSH clients available on the iPad but the two apps I’ve tried and eventually still keep are [Termius](https://www.termius.com) and [Prompt](https://panic.com/prompt/). Both are professionally written and beautiful apps that has plenty of good features. 
 
-I preferred Termius because it allowed me to have access to the full screen and Prompt had this big top menu bar that annoyed me  quite a bit. However over time what turned me off from Termius was not only its subscription model (I actually subscribed for a year) but that it increased the subscription price from about $10 a year to $10 a month. In addition, it gets disconnected from whichever server I connect to whenever I switch out and that was not usable (to be fair, its a drawback because of iOS and that Termius later fixed).
+I preferred Termius because it allowed me to have access to the full screen and Prompt had this big top menu bar that annoyed me  quite a bit. However over time what turned me off from Termius was not only its subscription model (I actually subscribed for a year) but that it increased the subscription price from about $10 a year to $10 a month. In addition, it gets disconnected from whichever server I connect to whenever I switch out and that was not usable (to be fair, its a drawback because of iOS and Termius later fixed it).
+
+In the mean time, I discovered a different category of apps that proved to be a good replacement for SSH client apps -- terminal emulators.
+
 
 ### Terminal emulators
-There are a few terminal emulators as well though not as many as SSH clients. One advantage terminal emulators have over SSH clients is that you can actually work off it directly from the iPad! Depending on the sophistication of the emulator, it can go quite far including compiling and running applications on it.
+There are a few terminal emulators as well though not as many as SSH clients and  most of them tend to be open source or free. One advantage terminal emulators have over SSH clients is that you can actually work off it directly from iPadOS! Depending on the sophistication of the emulator, it can go quite far including compiling and running applications on it.
 
-My favourite terminal emulator by far is this pretty cool open source project called [iSH](https://ish.app), which is essentially a Linux shell environment running locally on iOS/iPadOS using a usermode x86 emulator. It’s based off Alpine Linux and you can install stuff like Python3 and Ruby. However because it is an emulator there are limitations, for eg Ruby runs pretty poorly on it and there are gems that often simply doesn’t work on it. 
+My favourite terminal emulator by far is this pretty cool open source project called [iSH](https://ish.app), which is essentially a Linux shell environment running locally on iOS/iPadOS using a usermode x86 emulator. It’s based off Alpine Linux and you can install stuff like Python3, Ruby and even Java! However because it is an emulator there are limitations, for eg Ruby runs pretty poorly on it and there are gems that often simply doesn’t work on it. Jupyter Notebook runs on it as well (takes a long time to install) but runs really slowly (it is an emulator after all).
 
 Also, Go and Rust doesn’t work on it either because it requires MMX instruction set emulation which it doesn’t support. It’s not a released project as of date but you can either download, compile and deploy it on your own, or sign up for a TestFlight beta trial.
 
@@ -264,7 +267,7 @@ That’s it! You should see the server appearing under the _Shared_ heading. Whe
 *Seeing your Pi4 files from the File app*
 
 ### Code editors
-I don’t use code editors on my iPad because none of the ones I’ve used fit into my normal coding workflow. Specifically when I write code or make changes to code, I expect  the changes to be saved. Unfortunately most of the code editors I have tried before requires a secondary step of syncing the files to the server, which really breaks my flow.
+I don’t use code editors on my iPad Pro because none of the ones I’ve used fit into my normal coding workflow. Specifically when I write code or make changes to code, I expect  the changes to be saved. Unfortunately most of the code editors I have tried before requires a secondary step of syncing the files to the server, which really breaks my flow.
 
 There are a couple of exceptions, especially Kodex, which allows me to use the Files app to connect to a Samba server on the Pi4 and it works reasonably well. However I don’t like the interface (yes, I’m picky) so that was it. Having said that though, I haven’t tried the more popular code editors yet like Coda or Buffer essentially because I’m not confident that they will be worth it.
 
@@ -285,15 +288,15 @@ Go to _Interfacing Options_, scroll down and select _VNC > Yes_ and we’re all 
 
 On the iPad, you need to  install a VNC client. There are few but I used VNC Viewer from RealVNC to be consistent. Add a new server and enter the IP address (192.168.100.1 in my case) and name. The user name and password is the same user name and password you used to log into the Pi4 (it’s either `pi` or whichever user you created). That’s all there is to do, just hook up your iPad to the Pi4 and away you go!
 
-![Remoting to your Pi4](/pi4dev/vnc.png)
+![Remoting to your Pi4](/pi4dev/vnc.jpg)
 *Remoting to your Pi4*
 
-Finally if you’re wondering even though you’re remote-ing into the Pi4, can you add a mouse to the Pi4 instead of using the rather clumsy touch interface or the rather silly remote mouse? And why not. It would be impossible if your remote desktop is really far away but this is just a small box next to your iPad, so just stick a mouse into one of the USB ports! It works.
+Finally if you’re wondering even though you’re remote-ing into the Pi4, can you add a mouse to the Pi4 instead of using the rather clumsy touch interface or the rather silly remote mouse? And why not. It would be impossible if your remote desktop is really far away but this is just a small box next to your iPad, so just stick a mouse into one of the USB ports! It works pretty well.
 
-And since you’re adding a wired mouse, why not a wireless one, heck, why not a Bluetooth mouse. That works like a charm too.
+And since you’re adding a wired mouse, why not a wireless one, heck, why not a Bluetooth mouse. That works like a charm too!
 
 ### Visual Studio Code
-I mentioned earlier that I don’t use code editor apps on my iPad Pro. My usual code editor is Visual Studio Code, and unfortunately it doesn’t work on the iPadOS. However it does work on the Pi4 though it’s a bit messier to install.
+I mentioned earlier that I don’t use code editor apps on my iPad Pro. My usual code editor is Visual Studio Code on my MacBook Pro, and unfortunately it doesn’t work on the iPadOS. However it does work on the Pi4 though it’s a bit messier to install.
 
 VSCode is not a package not in the standard repositories. In addition, while you can download the `.deb` package from the VSCode site, they only have it in `amd64`. Remember, our nifty little Pi4 is an ARM machine so this wouldn’t work. Fortunately the Internet is full of helpful people and one such person have made all the [necessary scripts to perform an easy install of VSCode](https://code.headmelted.com). 
 
@@ -320,7 +323,7 @@ code-oss .
 
 Here’s how I used VSCode on the Pi4 for my Tanuki project.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_ku-w3cj5BU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" src="https://www.youtube.com/embed/_ku-w3cj5BU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 *Remoting into the Pi4 and running VS Code for Tanuki*
 
