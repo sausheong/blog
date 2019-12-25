@@ -1,6 +1,7 @@
 ---
 title: "Sentiment analysis with a simple naive Bayes classifier in Go"
 date: 2018-05-29T16:06:07+08:00
+cover: "https://github.com/sausheong/gonb/raw/master/imgs/smiley.jpg"
 draft: false
 ---
 

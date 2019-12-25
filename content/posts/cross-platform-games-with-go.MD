@@ -1,9 +1,12 @@
 ---
-title: "Create a simple cross-platform desktop Space Invaders game with Go"
+title: "Create a simple cross-platform desktop game with Go"
 date: 2018-08-12T16:06:07+08:00
+cover: "https://github.com/sausheong/invadersapp/raw/master/images/space-invaders.jpg"
 draft: false
 ---
+
 {{< figure src="https://github.com/sausheong/invadersapp/raw/master/images/space-invaders.jpg">}}
+
 
 A few months ago I fiddled around with [writing Space Invaders using Go](https://sausheong.github.io/posts/space-invaders-with-go). I had a lot of fun writing it but the output only worked on iTerm2 because it used a specific feature of that terminal. In order to play the game you'd really have to download iTerm2 and run it on the command line. I thought it'd be fun to muck around it a bit more to see if I can bring it out as a proper desktop game.
 
